@@ -1,0 +1,37 @@
+<section class="statistics mt-4">
+    <div class="row">
+      <div class="col-lg-4">
+        <div class="box d-flex rounded-2 align-items-center mb-4 mb-lg-0 p-3">
+          <i class="uil-envelope-shield fs-2 text-center bg-primary rounded-circle"></i>
+          <div class="ms-3">
+            <div class="d-flex align-items-center">
+              <h3 class="mb-0">{{all_number_ip["count(*)"]}}</h3> <span class="d-block ms-2">Adresse ip</span>
+            </div>
+            <p class="fs-normal mb-0">Toutes les adresses Ip</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4">
+        <div class="box d-flex rounded-2 align-items-center mb-4 mb-lg-0 p-3">
+          <i class="uil-file fs-2 text-center bg-danger rounded-circle"></i>
+          <div class="ms-3">
+            <div class="d-flex align-items-center">
+              <h3 class="mb-0">{{ disfunction_number_ip["count(*)"] }}</h3> <span class="d-block ms-2">Adresse Ip</span>
+            </div>
+            <p class="fs-normal mb-0">Les adresses Ip non fonctionnelles</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4">
+        <div class="box d-flex rounded-2 align-items-center p-3">
+          <i class="uil-users-alt fs-2 text-center bg-success rounded-circle"></i>
+          <div class="ms-3">
+            <div class="d-flex align-items-center">
+              <h3 class="mb-0">{{ function_number_ip["count(*)"] }}</h3> <span class="d-block ms-2">Adresse Ip </span>
+            </div>
+            <p class="fs-normal mb-0">Les adresse Ip fonctionnelles</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>

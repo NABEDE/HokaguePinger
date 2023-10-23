@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+{% include 'head.html' %}
+<body>
+            <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+                
+
+                
+                  
+                  {% include 'sidebar.html' %}
+                 
+                  
+                  <section id="wrapper">
+                    {% include 'section_nav.html' %}
+                  
+                    {% include 'section_ip.html' %}
+
+
+                      <section class="charts mt-4" style="align:center">
+                        {% if message %}
+                        <div class="alert alert-success" role="alert">{{message}}</div>
+                        {% endif %}
+
+                        {% if message1 %}
+                        <div class="alert alert-danger" role="alert">{{message1}}</div>
+                        {% endif %}
+                        
+                        <div class="login-box ">
+                          <form action="/connexion/ajouterutilisateur/ajouter" method="post">
+                            <div class="user-box form-group">
+                              <label style="color:white">Nom utilisateur</label>
+                              <input type="text" class="form-control" name="username" required="">
+                            </div>
+                            <div class="user-box form-group">
+                              <label style="color:white">adresse mail</label>
+                              <input type="text" class="form-control" name="email" required="">
+                            </div>
+                            <div class="user-box form-group">
+                              <label style="color:white">Mot de passe</label>
+                              <input type="password" class="form-control" name="password" required="">
+                            </div>
+                            <br/>
+                            <button style="margin-left:275px" class="btn btn-outline-primary" type = "submit">
+                              Ajouter
+                          </button>
+                          </form>
+                        </div>
+                      </section>
+                  
+                      
+                          
+                      </section>
+                  
+                    
+                    </div>
+                  </section>
+
+                <!-- Contenu de votre tableau de bord -->
+            </main>
+        </div>
+    </div>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

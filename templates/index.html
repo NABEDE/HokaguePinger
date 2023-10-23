@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>HOKAGUE PINGER</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style_index.css') }}">
+</head>
+<body>
+    <div class="login-box">
+        <h2>HOKAGUE PINGER</h2>
+        <form action="/connexion" method="post">
+          <div class="user-box">
+            <input type="email" name="email" required="">
+            <label>adresse mail</label>
+          </div>
+          <div class="user-box">
+            <input type="password" name="password" required="">
+            <label>Mot de passe</label>
+          </div>
+          <button type = "submit">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            Connexion
+        </button>
+        </form>
+      </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
