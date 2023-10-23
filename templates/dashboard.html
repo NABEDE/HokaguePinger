@@ -23,6 +23,7 @@
                         <div class="alert alert-danger" role="alert">{{message1}}</div>
                         {% endif %}
                       <br>
+                      {% if all_ip_adress %}
                       <table class="table table-dark">
                         <thead>
                           <tr>
@@ -54,6 +55,18 @@
                           {% endfor %}
                         </tbody>
                       </table>
+                      {% else %}
+                      <div class="container mt-5">
+                        <div class="row justify-content-center">
+                            <div class="col-md-6">
+                                <div class="alert alert-info text-center">
+                                    <h4>Aucune adresse ip n'est disponible</h4>
+                                    <p>Il n'y a actuellement aucune adresse ip dans la base de données.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                      {% endif  %}
                   
                   
                       <section class="statis mt-4 text-center">

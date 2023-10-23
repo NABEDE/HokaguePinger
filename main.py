@@ -67,6 +67,16 @@ def ipadress_db():
 
     return addresses
 
+def info_users():
+    connection = database.get_db_connection()
+    cursor = connection.cursor(dictionary=True)
+    cursor.execute("SELECT * FROM users")
+    info_users = cursor.fetchall()
+    cursor.close()
+
+    return info_users
+
+
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
@@ -122,6 +132,18 @@ def dashboard():
         return render_template('dashboard.html', user = session["user"], all_ip_adress = session["allipadress"],  all_number_ip=  all_number_ip, function_number_ip= function_number_ip, disfunction_number_ip= disfunction_number_ip)
     else:
         return render_template('index.html')
+
+
+@app.route('/connexion/utilisateurs', methods=['GET', 'POST'])
+def print_users():
+    infos_users = info_users()
+    all_number_ip = database.fetch_ipadress_number_all()
+    function_number_ip = database.fetch_ipadress_number_function()
+    disfunction_number_ip = database.fetch_ipadress_number_disfunction()
+    all_ip_adress = ipadress_db()
+    print(all_ip_adress)
+    return render_template('users.html', user = session["user"],  all_number_ip=  all_number_ip, function_number_ip= function_number_ip, disfunction_number_ip= disfunction_number_ip, users = infos_users)
+    
 
 
 
@@ -247,6 +269,31 @@ def supprimer_ip(id):
         all_ip_adress = ipadress_db()
         session["allipadress"] = all_ip_adress
         return render_template('dashboard.html', user = session["user"], all_ip_adress = session["allipadress"], message1 = "Ça n'a pas été supprimé",  all_number_ip= all_number_ip , function_number_ip= function_number_ip, disfunction_number_ip=disfunction_number_ip)
+
+@app.route('/supprimer_user/<int:id>', methods=['GET'])
+def supprimer_user(id):
+    all_number_ip = database.fetch_ipadress_number_all()
+    function_number_ip = database.fetch_ipadress_number_function()
+    disfunction_number_ip = database.fetch_ipadress_number_disfunction()
+    infos_users = info_users()
+    # Vérifiez si l'ID est valide et existe dans la base de données
+    if id is not None:
+        connection = database.get_db_connection()
+        cursor = connection.cursor()
+        cursor.execute("DELETE FROM users WHERE id = %s", (id,))
+        connection.commit()
+        cursor.close()
+        connection.close()
+        # Redirigez l'utilisateur vers une page de confirmation ou autre
+
+        all_ip_adress = ipadress_db()
+        session["allipadress"] = all_ip_adress
+        return render_template('users.html', user = session["user"], all_ip_adress = session["allipadress"], message = "Supprimer avec succès",  all_number_ip= all_number_ip , function_number_ip= function_number_ip, disfunction_number_ip=disfunction_number_ip, users = infos_users)
+    else:
+        # Gérez le cas où l'ID n'est pas valide
+        all_ip_adress = ipadress_db()
+        session["allipadress"] = all_ip_adress
+        return render_template('users.html', user = session["user"], all_ip_adress = session["allipadress"], message1 = "Ça n'a pas été supprimé",  all_number_ip= all_number_ip , function_number_ip= function_number_ip, disfunction_number_ip=disfunction_number_ip, users = infos_users)
 
 
 
